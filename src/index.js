@@ -8,7 +8,7 @@ const db = require('./db');
 server.get('/test', (req, res) => {
   res.status(200).send('Test message: Back-end is ok');
 });
-server.get('/db-test', (req, res) => {
+server.get('/db', (req, res) => {
   db.query(
     `
     SELECT * from tests
