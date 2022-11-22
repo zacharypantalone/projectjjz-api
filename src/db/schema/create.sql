@@ -1,3 +1,5 @@
+CREATE DATABASE careersquared;
+
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS appointments CASCADE;
 DROP TABLE IF EXISTS mentors CASCADE;
@@ -8,7 +10,7 @@ DROP TABLE IF EXISTS questions CASCADE;
 DROP TABLE IF EXISTS articles CASCADE;
 DROP TABLE IF EXISTS tests CASCADE;
 -- Create DATABASE line is required to house the tables
-CREATE DATABASE careerSquared;
+
 -- This is a dummy table with one record inserted into it
 CREATE TABLE tests (
   id SERIAL PRIMARY KEY NOT NULL,
