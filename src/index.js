@@ -1,15 +1,20 @@
-const fs = require("fs");
-const port = 8001
-const express = require('express')
+const port = 8001;
+const express = require('express');
 
 const server = express();
-const bodyparser = require("body-parser");
-const db = require("./db");
+const bodyparser = require('body-parser');
+const db = require('./db');
 
-server.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+server.get('/test', (req, res) => {
+  db.query(
+    `
+    SELECT * from tests
+    `,
+  ).then(data => {
+    res.send(data.rows[0]);
+  });
+});
 
 server.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+  console.log(`Example app listening on port ${port}`);
+});
