@@ -1,0 +1,1 @@
+INSERT INTO appointments (user_id, mentor_id, appointment_time, created_at, updated_at) VALUES ();

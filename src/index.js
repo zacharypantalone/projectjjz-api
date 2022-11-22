@@ -4,7 +4,7 @@ const express = require('express')
 
 const server = express();
 const bodyparser = require("body-parser");
-// const db = require("./db");
+const db = require("./db");
 
 server.get('/', (req, res) => {
   res.send('Hello World!')
