@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/index.js",
-    "reset": "psql -d careersquared < ./src/db/schema/create.sql"
+    "reset": "psql < ./src/db/schema/create.sql"
   },
   "repository": {
     "type": "git",
