@@ -8,11 +8,6 @@ const db = require('./db');
 server.get('/test', (req, res) => {
   res.status(200).send('Test message: Back-end is ok');
 });
-
-server.get('/', (req, res) => {
-  res.status(200).send('Landing Page');
-});
-
 server.get('/db', (req, res) => {
   db.query(
     `
