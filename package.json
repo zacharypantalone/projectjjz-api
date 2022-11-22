@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/index.js",
     "seed": "psql < ",
-    "reset": "psql < ./src/db/schema/create.sql && psql < ./src/db/seeds/seed.sql"
+    "reset": "psql -U development -d careersquared < ./src/db/schema/create.sql && psql -U development -d careersquared < ./src/db/seeds/seed.sql"
   },
   "repository": {
     "type": "git",
