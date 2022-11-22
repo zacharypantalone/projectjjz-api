@@ -17,4 +17,5 @@ INSERT INTO questions (questions, option_a, option_b, option_c, created_at, upda
 INSERT INTO articles (title, job_id, body_hyperlink, created_at, updated_at) VALUES (info);
 -- INSERT INTO articles (title, job_id, body_hyperlink, created_at, updated_at) VALUES ('Test Article',1,'This is the test article''s body');
 
+--Test seed for the 'tests' table
 INSERT INTO tests (body) VALUES ('This is the first test records body');

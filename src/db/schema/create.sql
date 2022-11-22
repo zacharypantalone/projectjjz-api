@@ -7,13 +7,14 @@ DROP TABLE IF EXISTS quiz_results CASCADE;
 DROP TABLE IF EXISTS questions CASCADE;
 DROP TABLE IF EXISTS articles CASCADE;
 DROP TABLE IF EXISTS tests CASCADE;
-
+-- Create DATABASE line is required to house the tables
 CREATE DATABASE careerSquared;
-
+-- This is a dummy table with one record inserted into it
 CREATE TABLE tests (
   id SERIAL PRIMARY KEY NOT NULL,
   body VARCHAR(255) NOT NULL
 )
+-- Commented for testing purposes - There are syntax errors to test here
 
 -- CREATE TABLE users (
 --   id SERIAL PRIMARY KEY NOT NULL,
