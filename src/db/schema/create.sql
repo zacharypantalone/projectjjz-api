@@ -18,7 +18,6 @@ CREATE TABLE users (
 );
 
 
-
 CREATE TABLE appointments (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -60,9 +59,9 @@ CREATE TABLE jobs (
 CREATE TABLE quiz_results (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  recommentdation 1 VARCHAR(255),
-  recommentdation 2 VARCHAR(255),
-  recommentdation 3 VARCHAR(255),
+  recommentdation_1 VARCHAR(255),
+  recommentdation_2 VARCHAR(255),
+  recommentdation_3 VARCHAR(255),
   created_at DEFAULT CURRENT_TIMESTAMP,
   updated_at ON UPDATE CURRENT_TIMESTAMP
 );
