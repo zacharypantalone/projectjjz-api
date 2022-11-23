@@ -19,3 +19,5 @@
 
 --Test seed for the 'tests' table
 INSERT INTO tests (body) VALUES ('This is the second test records body');
+
+INSERT INTO users (first_name, last_name, email, password, password_confirmation) VALUES ('Bob','Ross','bob@ross.com','clouds','clouds');

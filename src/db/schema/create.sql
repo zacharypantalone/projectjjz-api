@@ -15,17 +15,18 @@ DROP TABLE IF EXISTS tests CASCADE;
 CREATE TABLE tests (
   id SERIAL PRIMARY KEY NOT NULL,
   body VARCHAR(255) NOT NULL
-)
+);
 -- Commented for testing purposes - There are syntax errors to test here
 
--- CREATE TABLE users (
---   id SERIAL PRIMARY KEY NOT NULL,
---   first_name VARCHAR(255) NOT NULL,
---   last_name VARCHAR(255) NOT NULL,
---   email VARCHAR(255) NOT NULL,
---   password VARCHAR(255) NOT NULL,
---   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
--- );
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY NOT NULL,
+  first_name VARCHAR(255) NOT NULL,
+  last_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  password_confirmation VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 
 -- CREATE TABLE appointments (
