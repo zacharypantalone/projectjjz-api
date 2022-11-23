@@ -29,7 +29,7 @@ server.post('/register', (req, res) => {
   INSERT INTO users (first_name, last_name, email, password, password_confirmation) VALUES ($1,$2,$3,$4,$5)
   `,
     [firstname, lastname, email, password, passwordconfirm],
-  ).then(data => res.send(data.rows));
+  );
 });
 
 server.listen(port, () => {
