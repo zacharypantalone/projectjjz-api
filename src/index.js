@@ -21,19 +21,15 @@ server.get('/db', (req, res) => {
 });
 
 server.post('/register', (req, res) => {
-  const firstName = req.body.firstname;
-  db.query(`SELECT first_name, last_name FROM users WHERE first_name=$1`, [
-    firstName,
-  ]).then(data => res.send(data.rows));
+  const { firstname, lastname, email, password, passwordconfirm } =
+    req.body.user;
 
-  // res.send('Post to register received');
-  // db.query(
-  //   `
-  //   INSERT INTO users (first_name, last_name, email, password, password_confirmation)
-  //   VALUES
-  //   ($1,$2,$3,$4,$5)
-  //   `,[]
-  // )
+  db.query(
+    `
+  INSERT INTO users (first_name, last_name, email, password, password_confirmation) VALUES ($1,$2,$3,$4,$5)
+  `,
+    [firstname, lastname, email, password, passwordconfirm],
+  ).then(data => res.send(data.rows));
 });
 
 server.listen(port, () => {
