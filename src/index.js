@@ -1,47 +1,57 @@
 const port = 8001;
 const express = require('express');
-const cookieSession = require('cookie-session');
 
 const db = require('./db');
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(
-  cookieSession({
-    name: 'session',
-    keys: ['key1', 'key2'],
-
-    maxAge: 24 * 60 * 60 * 1000,
-  }),
-);
 
 app.get('/test', (req, res) => {
   res.status(200).send('Test message: Back-end is ok');
 });
 
-app.post('/dashboard', (req, res) => {
-  console.log(req.session);
+app.post('/login', (req, res) => {
   db.query(
     `SELECT email, password, id
     FROM users
     WHERE email=$1
-    AND password=$2
     `,
-    [req.body.user.email, req.body.user.password],
+    [req.body.user.email],
   ).then(result => {
-    if (result.rows.length === 1) {
-      req.session.userID = result.rows[0].id;
-      res.status(200).send({ userID: result.rows[0].id });
+    if (result.rows.length === 0) {
+      return res.status(404).send({ Message: 'User not found' });
     }
+    if (req.body.user.password !== result.rows[0].password) {
+      return res.status(401).send({ Message: 'User login unauthorized' });
+    }
+    res
+      .status(201)
+      .send({ Message: 'User logged in successfully', user: result.rows[0].id })
   });
 });
 
-// app.get('/dashboard',() => {
-//   db.query(
-//     `SELECT articles where userID = req.session`
-//   )
-// })
+app.get('/register'), (req, res) => {};
+app.post('/register'), (req, res) => {};
+app.get('/dashboard'), (req, res) => {};
+app.get('/quiz'), (req, res) => {};
+app.post('/quiz'), (req, res) => {};
+app.get('/career'), (req, res) => {};
+app.get('/schedule'), (req, res) => {};
+
+app.get('/dashboard', (req, res) => {
+  if (req.session.userID) {
+    db.query(
+      `SELECT recommendation_1, recommendation_2, recommendation_3
+      FROM quiz_results
+      WHERE user_id=$1
+      `,
+      [req.session.userID],
+    ).then(res.send(res.rows));
+  } else {
+    res.status(401).send('Unauthorized user, redirecting to landing page');
+  }
+});
 
 app.post('/register', (req, res) => {
   const { firstname, lastname, email, password, passwordconfirm } =
