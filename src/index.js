@@ -1,23 +1,43 @@
 const port = 8001;
 const express = require('express');
+const basicAuth = require('express-basic-auth');
 
 const server = express();
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
+// server.use(basicAuth({ authorizer: myAuthorizer }));
 
 const db = require('./db');
 
-server.get('/test', (req, res) => {
-  res.status(200).send('Test message: Back-end is ok');
-});
-server.get('/db', (req, res) => {
+// function myAuthorizer(email, password) {
+//   const userMatches = basicAuth.safeCompare(email, 'bob@ross.com');
+//   const passwordMatches = basicAuth.safeCompare(password, 'clouds');
+
+//   return userMatches & passwordMatches;
+// }
+
+server.post('/dashboard', (req, res) => {
+  console.log(req.body);
+  const { email, password } = req.body.user;
   db.query(
     `
-    SELECT * from tests
+    SELECT first_name, email, password
+    FROM users
+    WHERE email=$1 AND password=$2
     `,
-  ).then(data => {
-    res.send(data.rows[0]);
+    [email, password],
+  ).then(result => {
+    console.log(result.rows);
+    // if (myAuthorizer(email, password)) {
+    //   res.status(200).send('User Login Authentication Successful');
+    // } else {
+    //   res.status(404).send('User not found');
+    // }
   });
+});
+
+server.get('/test', (req, res) => {
+  res.status(200).send('Test message: Back-end is ok');
 });
 
 server.post('/register', (req, res) => {
