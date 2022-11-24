@@ -1,31 +1,49 @@
 const port = 8001;
 const express = require('express');
-
-const server = express();
-server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
+const cookieSession = require('cookie-session');
 
 const db = require('./db');
 
-server.post('/dashboard', (req, res) => {
-  const { email, password } = req.body.user;
-  db.query(
-    `
-    SELECT first_name, email, password
-    FROM users
-    WHERE email=$1 AND password=$2
-    `,
-    [email, password],
-  ).then(result => {
-    console.log(result.rows);
-  });
-});
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  cookieSession({
+    name: 'session',
+    keys: ['key1', 'key2'],
 
-server.get('/test', (req, res) => {
+    maxAge: 24 * 60 * 60 * 1000,
+  }),
+);
+
+app.get('/test', (req, res) => {
   res.status(200).send('Test message: Back-end is ok');
 });
 
-server.post('/register', (req, res) => {
+app.post('/dashboard', (req, res) => {
+  console.log(req.session);
+  db.query(
+    `SELECT email, password, id
+    FROM users
+    WHERE email=$1
+    AND password=$2
+    `,
+    [req.body.user.email, req.body.user.password],
+  ).then(result => {
+    if (result.rows.length === 1) {
+      req.session.userID = result.rows[0].id;
+      res.status(200).send({ userID: result.rows[0].id });
+    }
+  });
+});
+
+// app.get('/dashboard',() => {
+//   db.query(
+//     `SELECT articles where userID = req.session`
+//   )
+// })
+
+app.post('/register', (req, res) => {
   const { firstname, lastname, email, password, passwordconfirm } =
     req.body.user;
 
@@ -37,6 +55,6 @@ server.post('/register', (req, res) => {
   );
 });
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
