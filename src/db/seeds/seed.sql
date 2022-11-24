@@ -21,3 +21,5 @@
 INSERT INTO tests (body) VALUES ('This is the second test records body');
 
 INSERT INTO users (first_name, last_name, email, password, password_confirmation) VALUES ('Bob','Ross','bob@ross.com','clouds','clouds');
+
+INSERT INTO quiz_results (user_id, recommendation_1, recommendation_2, recommendation_3) VALUES (1,'First recommendation','second recommendation','third recommendation')

@@ -28,6 +28,15 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE quiz_results (
+  id SERIAL PRIMARY KEY NOT NULL,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  recommendation_1 VARCHAR(255),
+  recommendation_2 VARCHAR(255),
+  recommendation_3 VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 -- CREATE TABLE appointments (
 --   id SERIAL PRIMARY KEY NOT NULL,
@@ -63,23 +72,7 @@ CREATE TABLE users (
 --   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
 
--- CREATE TABLE quiz_results (
---   id SERIAL PRIMARY KEY NOT NULL,
---   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
---   recommentdation_1 VARCHAR(255),
---   recommentdation_2 VARCHAR(255),
---   recommentdation_3 VARCHAR(255),
---   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
--- );
 
--- CREATE TABLE questions (
---   id SERIAL PRIMARY KEY NOT NULL,
---   questions VARCHAR(255),
---   option_a VARCHAR(255),
---   option_b VARCHAR(255),
---   option_c VARCHAR(255),
---   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
--- );
 
 -- CREATE TABLE articles (
 --   id SERIAL PRIMARY KEY NOT NULL,
