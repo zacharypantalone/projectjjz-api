@@ -1,26 +1,49 @@
 const port = 8001;
 const express = require('express');
-
-const server = express();
-server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
+const cookieSession = require('cookie-session');
 
 const db = require('./db');
 
-server.get('/test', (req, res) => {
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  cookieSession({
+    name: 'session',
+    keys: ['key1', 'key2'],
+
+    maxAge: 24 * 60 * 60 * 1000,
+  }),
+);
+
+app.get('/test', (req, res) => {
   res.status(200).send('Test message: Back-end is ok');
 });
-server.get('/db', (req, res) => {
+
+app.post('/dashboard', (req, res) => {
+  console.log(req.session);
   db.query(
-    `
-    SELECT * from tests
+    `SELECT email, password, id
+    FROM users
+    WHERE email=$1
+    AND password=$2
     `,
-  ).then(data => {
-    res.send(data.rows[0]);
+    [req.body.user.email, req.body.user.password],
+  ).then(result => {
+    if (result.rows.length === 1) {
+      req.session.userID = result.rows[0].id;
+      res.status(200).send({ userID: result.rows[0].id });
+    }
   });
 });
 
-server.post('/register', (req, res) => {
+// app.get('/dashboard',() => {
+//   db.query(
+//     `SELECT articles where userID = req.session`
+//   )
+// })
+
+app.post('/register', (req, res) => {
   const { firstname, lastname, email, password, passwordconfirm } =
     req.body.user;
 
@@ -32,6 +55,6 @@ server.post('/register', (req, res) => {
   );
 });
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
