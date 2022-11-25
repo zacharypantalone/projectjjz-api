@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/index.js",
-    "reset": "psql -d careersquared < ./src/db/schema/create.sql"
+    "start": "nodemon ./src/index.js",
+    "seed": "psql < ",
+    "reset": "psql -U development -d careersquared < ./src/db/schema/create.sql && psql -U development -d careersquared < ./src/db/seeds/seed.sql"
   },
   "repository": {
     "type": "git",
@@ -20,7 +21,9 @@
   },
   "homepage": "https://github.com/zacharypantalone/projectjjz-api#readme",
   "dependencies": {
+    "cookie-session": "^2.0.0",
     "express": "^4.18.2",
+    "nodemon": "^2.0.20",
     "pg": "^8.8.0"
   }
 }
