@@ -1,12 +1,38 @@
+--  ///////////////////////////////////////////
+--  /////////       Users     /////////////////
+--  ///////////////////////////////////////////
 -- INSERT INTO users (first_name, last_name, email, password, created_at, updated_at) VALUES (info here);
+INSERT INTO users (first_name, last_name, email, password, password_confirmation) VALUES ('Bob','Ross','bob@ross.com','clouds','clouds');
+
+--  ///////////////////////////////////////////
+--  /////////       mentors     ///////////////
+--  ///////////////////////////////////////////
+
+-- INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (info here);
+INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (1, 'Suzie', 'Summers',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
+INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (2, 'Paul', 'Parsons',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
+INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (3, 'Ned', 'Nielson',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
+
+
+--  ///////////////////////////////////////////
+--  /////////       appointments     //////////
+--  ///////////////////////////////////////////
 
 -- INSERT INTO appointments (user_id, mentor_id, appointment_time, created_at, updated_at) VALUES (info here);
 
--- INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (info here);
+
+--  ///////////////////////////////////////////
+--  /////////       careers     ///////////////
+--  ///////////////////////////////////////////
 
 -- INSERT INTO careers (title, career_type, created_at, updated_at) VALUES (info here);
 -- INSERT INTO careers (title, career_type, created_at, updated_at) VALUES ('Test Career','This is the test''s career type');
 -- INSERT INTO careers (title, career_type, created_at, updated_at) VALUES ('Tech', 'career type');
+
+
+--  ///////////////////////////////////////////
+--  /////////       jobs        ///////////////
+--  ///////////////////////////////////////////
 
 -- INSERT INTO jobs (career_id, img, title, body, average_salary, salary_range, training, skills, learning_links, articles career_type) VALUES (info here);
 -- INSERT INTO jobs (career_id, img, title, body, average_salary, salary_range, training, skills, learning_links, articles, career_type) VALUES (1,'https://cdn.dribbble.com/users/1626229/screenshots/16311321/media/0d2090c377191f4e49bde0932d71f9d3.jpg?compress=1&resize=400x300','Creative Coding','Like any form of expression, creative coding can be used to enhance your existing career or to start a new one. Experienced web developers might learn creative coding to help them create better interactive websites. Others use creative coding as a form of artistic expression. Agencies and start-ups are using creative coding to build interactive installations for the public and big brands',
@@ -19,16 +45,22 @@
 -- '$81,363/year', '$21,000 - $153,500/year', '3 months - 2 years', 'Javascript, Python, Java, SQL, Git, HTML, CSS',  'https://www.freecodecamp.org/, https://www.udemy.com/courses/search/?q=backend+web+development&src=sac&kw=Back, Software Engineering Online Bootcamp | 1-on-1 Mentorship | Thinkful™ https://www.lighthouselabs.ca/', 
 -- 'Software Engineering Online Bootcamp | 1-on-1 Mentorship | Thinkful™, https://www.guru99.com/what-is-backend-developer.html', 'Tech?');
 
+
+--  ///////////////////////////////////////////
+--  /////////      quiz results    ////////////
+--  ///////////////////////////////////////////
+
 -- INSERT INTO quiz_results (user_id, recommentdation_1, recommentdation_2, recommentdation_3, created_at, updated_at) VALUES (info here);
 
--- INSERT INTO questions (questions, option_a, option_b, option_c, created_at, updated_at) VALUES (info here);
--- INSERT INTO articles (title, job_id, body_hyperlink, created_at, updated_at) VALUES (info);
--- INS
--- INSERT INTO articles (title, job_id, body_hyperlink, created_at, updated_at) VALUES ('Test Article',1,'This is the test article''s body');
 
 --Test seed for the 'tests' table
 INSERT INTO tests (body) VALUES ('This is the second test records body');
 
-INSERT INTO users (first_name, last_name, email, password, password_confirmation) VALUES ('Bob','Ross','bob@ross.com','clouds','clouds');
 
-INSERT INTO quiz_results (user_id, recommendation_1, recommendation_2, recommendation_3) VALUES (1,'First recommendation','second recommendation','third recommendation')
+--  I didnt delete the below but I don't think we need them anymore?
+-- INSERT INTO questions (questions, option_a, option_b, option_c, created_at, updated_at) VALUES (info here);
+-- INSERT INTO articles (title, job_id, body_hyperlink, created_at, updated_at) VALUES (info);
+-- INSERT INTO articles (title, job_id, body_hyperlink, created_at, updated_at) VALUES ('Test Article',1,'This is the test article''s body');
+
+
+
