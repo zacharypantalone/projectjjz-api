@@ -21,7 +21,7 @@ app.get('/test', (req, res) => {
 
 app.post('/login', (req, res) => {
   db.query(
-    `SELECT email, password, id
+    `SELECT id
     FROM users
     WHERE email=$1
     `,
@@ -33,9 +33,7 @@ app.post('/login', (req, res) => {
     if (req.body.user.password !== result.rows[0].password) {
       return res.status(401).send({ Message: 'User login unauthorized' });
     }
-    // console.log(req.body.user.email);
     req.session.id = result.rows[0].id;
-    console.log(req.session);
     res.status(201).send({
       Message: 'User logged in successfully',
       user: result.rows[0].id,
@@ -82,8 +80,6 @@ app.post('/quiz'), (req, res) => {};
 app.get('/career'), (req, res) => {};
 app.get('/schedule'), (req, res) => {};
 app.post('/schedule'), (req, res) => {};
-
-
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
