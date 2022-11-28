@@ -1,12 +1,19 @@
 const port = 8001;
 const express = require('express');
-const expressSession = require('express-session');
+const session = require('express-session');
 
 const db = require('./db');
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(
+  session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+  }),
+);
 
 app.get('/test', (req, res) => {
   res.status(200).send('Test message: Back-end is ok');
@@ -26,34 +33,14 @@ app.post('/login', (req, res) => {
     if (req.body.user.password !== result.rows[0].password) {
       return res.status(401).send({ Message: 'User login unauthorized' });
     }
-    res
-      .status(201)
-      .send({
-        Message: 'User logged in successfully',
-        user: result.rows[0].id,
-      });
+    // console.log(req.body.user.email);
+    req.session.id = result.rows[0].id;
+    console.log(req.session);
+    res.status(201).send({
+      Message: 'User logged in successfully',
+      user: result.rows[0].id,
+    });
   });
-});
-
-app.get('/register'), (req, res) => {};
-app.post('/register'), (req, res) => {};
-app.get('/dashboard'), (req, res) => {};
-app.get('/quiz'), (req, res) => {};
-app.post('/quiz'), (req, res) => {};
-app.get('/career'), (req, res) => {};
-app.get('/schedule'), (req, res) => {};
-
-app.get('/quizresults', (req, res) => {
-  // guery the current user from the front end - MVP version - user 1 = bob ross
-  const userId = req.query.userId;
-  console.log(userId);
-  db.query(
-    `SELECT recommendation_1, recommendation_2, recommendation_3
-      FROM quiz_results
-      WHERE user_id=$1
-      `,
-    [1],
-  ).then(data => res.json(data.rows));
 });
 
 app.post('/register', (req, res) => {
@@ -67,6 +54,36 @@ app.post('/register', (req, res) => {
     [firstname, lastname, email, password, passwordconfirm],
   );
 });
+
+app.post('/logout', (req, res) => {
+  if (!req.session.id) {
+  }
+  console.log(req.session);
+  req.session = null;
+  console.log(req.session);
+  res.status(200).send();
+});
+
+app.get('/quizresults', (req, res) => {
+  // guery the current user from the front end - MVP version - user 1 = bob ross
+  const userId = req.query.userId;
+  // console.log(userId);
+  db.query(
+    `SELECT recommendation_1, recommendation_2, recommendation_3
+      FROM quiz_results
+      WHERE user_id=$1
+      `,
+    [1],
+  ).then(data => res.json(data.rows));
+});
+
+app.get('/quiz'), (req, res) => {};
+app.post('/quiz'), (req, res) => {};
+app.get('/career'), (req, res) => {};
+app.get('/schedule'), (req, res) => {};
+app.post('/schedule'), (req, res) => {};
+
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
