@@ -1,9 +1,6 @@
 const port = 8001;
 const express = require('express');
 const session = require('express-session');
-
-const db = require('./db');
-
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -13,7 +10,9 @@ app.use(
     resave: false,
     saveUninitialized: false,
   }),
-);
+  );
+  
+const db = require('./db');
 
 app.get('/test', (req, res) => {
   res.status(200).send('Test message: Back-end is ok');
@@ -70,22 +69,19 @@ app.post('/logout', (req, res) => {
 });
 
 app.get('/quizresults', (req, res) => {
-  // guery the current user from the front end - MVP version - user 1 = bob ross
-  const userId = req.query.userId;
-  // console.log(userId);
+  const userID = req.session.userId
   db.query(
     `SELECT recommendation_1, recommendation_2, recommendation_3
       FROM quiz_results
       WHERE user_id=$1
       `,
-    [1],
+    [userID],
   ).then(data => res.json(data.rows));
 });
 
-app.get('/quiz'), (req, res) => {};
-app.post('/quiz'), (req, res) => {};
-app.get('/career'), (req, res) => {};
-app.get('/schedule'), (req, res) => {};
+app.post('/quizresults'), (req, res) => {
+};
+
 app.post('/schedule'), (req, res) => {};
 
 app.listen(port, () => {
