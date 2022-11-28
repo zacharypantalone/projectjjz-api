@@ -1,6 +1,6 @@
 const port = 8001;
 const express = require('express');
-// const session = require('express-session')
+const expressSession = require('express-session');
 
 const db = require('./db');
 
@@ -28,7 +28,10 @@ app.post('/login', (req, res) => {
     }
     res
       .status(201)
-      .send({ Message: 'User logged in successfully', user: result.rows[0].id })
+      .send({
+        Message: 'User logged in successfully',
+        user: result.rows[0].id,
+      });
   });
 });
 
@@ -40,18 +43,17 @@ app.post('/quiz'), (req, res) => {};
 app.get('/career'), (req, res) => {};
 app.get('/schedule'), (req, res) => {};
 
-
 app.get('/quizresults', (req, res) => {
   // guery the current user from the front end - MVP version - user 1 = bob ross
-  const userId = req.query.userId
+  const userId = req.query.userId;
   console.log(userId);
-    db.query(
-      `SELECT recommendation_1, recommendation_2, recommendation_3
+  db.query(
+    `SELECT recommendation_1, recommendation_2, recommendation_3
       FROM quiz_results
       WHERE user_id=$1
       `,
-      [1],
-    ).then(data => res.json(data.rows));
+    [1],
+  ).then(data => res.json(data.rows));
 });
 
 app.post('/register', (req, res) => {
