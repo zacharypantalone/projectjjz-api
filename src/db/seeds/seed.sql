@@ -8,10 +8,11 @@ INSERT INTO users (first_name, last_name, email, password, password_confirmation
 --  /////////       mentors     ///////////////
 --  ///////////////////////////////////////////
 
+
 -- INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (info here);
-INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (1, 'Suzie', 'Summers',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
-INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (2, 'Paul', 'Parsons',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
-INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (3, 'Ned', 'Nielson',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
+-- INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (1, 'Suzie', 'Summers',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
+-- INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (2, 'Paul', 'Parsons',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
+-- INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (3, 'Ned', 'Nielson',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
 
 
 --  ///////////////////////////////////////////
@@ -19,6 +20,9 @@ INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_time
 --  ///////////////////////////////////////////
 
 -- INSERT INTO appointments (user_id, mentor_id, appointment_time, created_at, updated_at) VALUES (info here);
+INSERT INTO appointments (user_id, mentor_id, appointment_time, created_at, updated_at) VALUES (info here)
+INSERT INTO appointments (user_id, mentor_id, appointment_time, created_at, updated_at) VALUES (info here)
+INSERT INTO appointments (user_id, mentor_id, appointment_time, created_at, updated_at) VALUES (info here)
 
 
 --  ///////////////////////////////////////////
@@ -50,7 +54,7 @@ INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_time
 --  /////////      quiz results    ////////////
 --  ///////////////////////////////////////////
 
--- INSERT INTO quiz_results (user_id, recommentdation_1, recommentdation_2, recommentdation_3, created_at, updated_at) VALUES (info here);
+INSERT INTO quiz_results (user_id, recommendation_1, recommendation_2, recommendation_3) VALUES (1, 'recommendation 1', 'recommendation 2', 'recommendation 3');
 
 
 --Test seed for the 'tests' table

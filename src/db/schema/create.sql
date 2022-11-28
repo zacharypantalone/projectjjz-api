@@ -33,8 +33,7 @@ CREATE TABLE quiz_results (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   recommendation_1 VARCHAR(255),
   recommendation_2 VARCHAR(255),
-  recommendation_3 VARCHAR(255),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  recommendation_3 VARCHAR(255)
 );
 
 
@@ -64,21 +63,21 @@ CREATE TABLE quiz_results (
 -- );
 
 -- career_id, img, title, body, average_salary, salary_range, training, skills, learning_links, articles, career_type
-CREATE TABLE jobs (
-  id SERIAL PRIMARY KEY NOT NULL,
-  career_id INTEGER REFERENCES careers(id) ON DELETE CASCADE,
-  img VARCHAR(255),
-  title VARCHAR(255),
-  body VARCHAR(255),
-  average_salary VARCHAR(255),
-  salary_range VARCHAR(255),
-  training VARCHAR(255),
-  skills VARCHAR(255),
-  learning_links VARCHAR(255),
-  articles VARCHAR(255),
-  career_type VARCHAR(255),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+-- CREATE TABLE jobs (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   career_id INTEGER REFERENCES careers(id) ON DELETE CASCADE,
+--   img VARCHAR(255),
+--   title VARCHAR(255),
+--   body VARCHAR(255),
+--   average_salary VARCHAR(255),
+--   salary_range VARCHAR(255),
+--   training VARCHAR(255),
+--   skills VARCHAR(255),
+--   learning_links VARCHAR(255),
+--   articles VARCHAR(255),
+--   career_type VARCHAR(255),
+--   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
 
 
 
