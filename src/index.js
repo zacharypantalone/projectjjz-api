@@ -21,22 +21,22 @@ app.get('/test', (req, res) => {
 
 app.post('/login', (req, res) => {
   db.query(
-    `SELECT id
+    `SELECT id, email, password
     FROM users
     WHERE email=$1
     `,
     [req.body.user.email],
-  ).then(result => {
-    if (result.rows.length === 0) {
+  ).then(data => {
+    if (data.rows.length === 0) {
       return res.status(404).send({ Message: 'User not found' });
     }
-    if (req.body.user.password !== result.rows[0].password) {
+    if (req.body.user.password !== data.rows[0].password) {
       return res.status(401).send({ Message: 'User login unauthorized' });
     }
-    req.session.id = result.rows[0].id;
+    req.session.userId = data.rows[0].id;
     res.status(201).send({
       Message: 'User logged in successfully',
-      user: result.rows[0].id,
+      user: data.rows[0].id,
     });
   });
 });
@@ -51,14 +51,21 @@ app.post('/register', (req, res) => {
   `,
     [firstname, lastname, email, password, passwordconfirm],
   );
+  db.query(
+    `
+    SELECT id from users
+    WHERE email = $1`,
+    [email],
+  ).then(data => {
+    req.session.userId = data.rows[0].id;
+    res.status(201).send({
+      Message: 'User registered successfully',
+    });
+  });
 });
 
 app.post('/logout', (req, res) => {
-  if (!req.session.id) {
-  }
-  console.log(req.session);
   req.session = null;
-  console.log(req.session);
   res.status(200).send();
 });
 
