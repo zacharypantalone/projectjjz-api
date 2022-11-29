@@ -1,14 +1,17 @@
-CREATE DATABASE careersquared;
+-- CREATE DATABASE careersquared;
 
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS appointments CASCADE;
 DROP TABLE IF EXISTS mentors CASCADE;
 DROP TABLE IF EXISTS careers CASCADE;
 DROP TABLE IF EXISTS jobs CASCADE;
+DROP TABLE IF EXISTS quiz_questions CASCADE;
 DROP TABLE IF EXISTS quiz_results CASCADE;
 DROP TABLE IF EXISTS questions CASCADE;
 DROP TABLE IF EXISTS articles CASCADE;
 DROP TABLE IF EXISTS tests CASCADE;
+DROP TABLE IF EXISTS quiz CASCADE;
+DROP TABLE IF EXISTS user_quiz CASCADE;
 -- Create DATABASE line is required to house the tables
 
 -- This is a dummy table with one record inserted into it
@@ -28,22 +31,54 @@ CREATE TABLE users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE quiz_results (
+
+CREATE TABLE user_quiz (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  recommendation_1 VARCHAR(255),
-  recommendation_2 VARCHAR(255),
-  recommendation_3 VARCHAR(255)
+  quiz_taken BOOLEAN 
+);
+
+CREATE TABLE careers (
+  id SERIAL PRIMARY KEY NOT NULL,
+  career_type VARCHAR(255)
 );
 
 
--- CREATE TABLE appointments (
---   id SERIAL PRIMARY KEY NOT NULL,
---   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
---   mentor_id INTEGER REFERENCES mentors(id) ON DELETE CASCADE,
---   appointment_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
---   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
--- );
+CREATE TABLE jobs (
+  id SERIAL PRIMARY KEY NOT NULL,
+  career_id INTEGER REFERENCES careers(id) ON DELETE CASCADE,
+  img VARCHAR(255),
+  title VARCHAR(255),
+  body VARCHAR(500),
+  average_salary VARCHAR(255),
+  salary_range VARCHAR(255),
+  training VARCHAR(255),
+  skills VARCHAR(255),
+  learning_links VARCHAR(500),
+  articles VARCHAR(500),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE quiz (
+  id SERIAL PRIMARY KEY NOT NULL,
+  quiz_name VARCHAR(255)
+);
+
+
+CREATE TABLE questions (
+  id SERIAL PRIMARY KEY NOT NULL,
+  question VARCHAR(255),
+  answer_one VARCHAR(255),
+  answer_two VARCHAR(255),
+  quiz_id INTEGER REFERENCES quiz(id) ON DELETE CASCADE
+);
+
+CREATE TABLE quiz_results (
+  id SERIAL PRIMARY KEY NOT NULL,
+  quiz_id INTEGER REFERENCES quiz(id) ON DELETE CASCADE,
+  job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE
+);
+
 
 -- CREATE TABLE mentors (
 --   id SERIAL PRIMARY KEY NOT NULL,
@@ -55,30 +90,6 @@ CREATE TABLE quiz_results (
 --   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
 
--- CREATE TABLE careers (
---   id SERIAL PRIMARY KEY NOT NULL,
---   title VARCHAR(255), - 
---   career_type VARCHAR(255),
---   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
--- );
-
--- career_id, img, title, body, average_salary, salary_range, training, skills, learning_links, articles, career_type
--- CREATE TABLE jobs (
---   id SERIAL PRIMARY KEY NOT NULL,
---   career_id INTEGER REFERENCES careers(id) ON DELETE CASCADE,
---   img VARCHAR(255),
---   title VARCHAR(255),
---   body VARCHAR(255),
---   average_salary VARCHAR(255),
---   salary_range VARCHAR(255),
---   training VARCHAR(255),
---   skills VARCHAR(255),
---   learning_links VARCHAR(255),
---   articles VARCHAR(255),
---   career_type VARCHAR(255),
---   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
--- );
-
 
 
 -- CREATE TABLE articles (
@@ -86,5 +97,13 @@ CREATE TABLE quiz_results (
 --   title VARCHAR(255),
 --   job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
 --   body_hyperlink TEXT,
+--   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
+
+-- CREATE TABLE appointments (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+--   mentor_id INTEGER REFERENCES mentors(id) ON DELETE CASCADE,
+--   appointment_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 --   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
