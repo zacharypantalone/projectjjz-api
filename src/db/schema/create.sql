@@ -32,11 +32,11 @@ CREATE TABLE users (
 );
 
 
-CREATE TABLE user_quiz (
-  id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  quiz_taken BOOLEAN 
-);
+-- CREATE TABLE user_quiz (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+--   quiz_taken BOOLEAN 
+-- );
 
 CREATE TABLE careers (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -59,24 +59,25 @@ CREATE TABLE jobs (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE quiz (
-  id SERIAL PRIMARY KEY NOT NULL,
-  quiz_name VARCHAR(255)
-);
+-- CREATE TABLE quiz (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   quiz_name VARCHAR(255)
+-- );
 
 
 CREATE TABLE questions (
   id SERIAL PRIMARY KEY NOT NULL,
   question VARCHAR(255),
   answer_one VARCHAR(255),
-  answer_two VARCHAR(255),
-  quiz_id INTEGER REFERENCES quiz(id) ON DELETE CASCADE
+  answer_two VARCHAR(255)
 );
 
 CREATE TABLE quiz_results (
   id SERIAL PRIMARY KEY NOT NULL,
-  quiz_id INTEGER REFERENCES quiz(id) ON DELETE CASCADE,
-  job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  job_one_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
+  job_two_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
+  job_three_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE
 );
 
 
@@ -89,8 +90,6 @@ CREATE TABLE quiz_results (
 --   booked_times VARCHAR(255),
 --   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
-
-
 
 -- CREATE TABLE articles (
 --   id SERIAL PRIMARY KEY NOT NULL,

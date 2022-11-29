@@ -69,14 +69,22 @@ app.post('/logout', (req, res) => {
 });
 
 app.get('/quizresults', (req, res) => {
+  console.log(req.session)
   const userID = req.session.userId
   db.query(
-    `SELECT recommendation_1, recommendation_2, recommendation_3
+    `SELECT job_one_id, job_two_id, job_three_id
       FROM quiz_results
       WHERE user_id=$1
       `,
     [userID],
-  ).then(data => res.json(data.rows));
+  ).then(data1 => 
+    db.query(
+      `SELECT title, img, body FROM jobs 
+      WHERE id IN ($1, $2, $3);`,
+      [data1.rows[0].job_one_id, data1.rows[0].job_two_id, data1.rows[0].job_three_id]
+    )
+  )
+  .then(data2 => res.json(data2.rows));
 });
 
 app.post('/quizresults'), (req, res) => {
