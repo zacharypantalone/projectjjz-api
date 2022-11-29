@@ -10,8 +10,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
   }),
-  );
-  
+);
+
 const db = require('./db');
 
 app.get('/test', (req, res) => {
@@ -77,20 +77,39 @@ app.get('/quizresults', (req, res) => {
       WHERE user_id=$1
       `,
     [userID],
-  ).then(data1 => 
+  ).then(data1 =>
     db.query(
       `SELECT title, img, body FROM jobs 
       WHERE id IN ($1, $2, $3);`,
       [data1.rows[0].job_one_id, data1.rows[0].job_two_id, data1.rows[0].job_three_id]
     )
   )
-  .then(data2 => res.json(data2.rows));
+    .then(data2 => res.json(data2.rows));
 });
+
+
+
+app.get('/careerinfo/:jobId', (req, res) => {
+  const jobID = req.params.jobId
+  db.query(
+    `SELECT * FROM jobs
+    WHERE id = $1`,
+    [jobID]
+  )
+    .then(data => {
+
+      console.log("*******", data.rows)
+      res.json(data.rows[0])
+    })
+    
+})
+
+
 
 app.post('/quizresults'), (req, res) => {
 };
 
-app.post('/schedule'), (req, res) => {};
+app.post('/schedule'), (req, res) => { };
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
