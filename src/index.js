@@ -91,8 +91,8 @@ app.get('/quizresults', (req, res) => {
 
 
 app.post('/quizresults', (req, res) => {
-  const userId = 1;
-  const [one, two, three] = [...req.body]
+  const userId = req.session.userID;
+  const [one, two, three] = [...req.body];
   
 
   db.query(
