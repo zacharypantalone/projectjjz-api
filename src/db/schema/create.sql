@@ -7,9 +7,14 @@ DROP TABLE IF EXISTS quiz_questions CASCADE;
 DROP TABLE IF EXISTS quiz_results CASCADE;
 DROP TABLE IF EXISTS questions CASCADE;
 DROP TABLE IF EXISTS articles CASCADE;
+DROP TABLE IF EXISTS learning_links CASCADE;
 DROP TABLE IF EXISTS tests CASCADE;
 DROP TABLE IF EXISTS quiz CASCADE;
-DROP TABLE IF EXISTS user_quiz CASCADE;
+
+
+-- Create DATABASE line is required to house the tables
+
+
 -- This is a dummy table with one record inserted into it
 CREATE TABLE tests (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -26,6 +31,7 @@ CREATE TABLE users (
   password_confirmation VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
 -- CREATE TABLE user_quiz (
 --   id SERIAL PRIMARY KEY NOT NULL,
 --   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
@@ -48,9 +54,21 @@ CREATE TABLE jobs (
   salary_range VARCHAR(255),
   training VARCHAR(255),
   skills VARCHAR(255),
-  learning_links VARCHAR(500),
-  articles VARCHAR(500),
+  -- learning_links VARCHAR(255), 
+  -- articles VARCHAR(255),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE learning_links (
+  id SERIAL PRIMARY KEY NOT NULL,
+  link VARCHAR(255),
+  jobs_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE
+);
+
+CREATE TABLE articles (
+  id SERIAL PRIMARY KEY NOT NULL,
+  article VARCHAR(255),
+  jobs_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE
 );
 -- CREATE TABLE quiz (
 --   id SERIAL PRIMARY KEY NOT NULL,

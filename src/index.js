@@ -10,8 +10,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
   }),
-  );
-  
+);
+
 const db = require('./db');
 
 app.get('/test', (req, res) => {
@@ -78,16 +78,44 @@ app.get('/quizquestions', (req, res) => {
 
 
 app.get('/quizresults', (req, res) => {
+  console.log(req.session)
   const userID = req.session.userId
   db.query(
-    `SELECT recommendation_1, recommendation_2, recommendation_3
+    `SELECT job_one_id, job_two_id, job_three_id
       FROM quiz_results
       WHERE user_id=$1
       `,
     [userID],
-  ).then(data => res.json(data.rows));
+  ).then(data1 =>
+    db.query(
+      `SELECT title, img, body FROM jobs 
+      WHERE id IN ($1, $2, $3);`,
+      [data1.rows[0].job_one_id, data1.rows[0].job_two_id, data1.rows[0].job_three_id]
+    )
+  )
+    .then(data2 => res.json(data2.rows));
 });
 
+
+
+
+app.get('/careerinfo/:jobId', (req, res) => {
+  const jobID = req.params.jobId
+  db.query(
+    `SELECT * FROM jobs 
+    WHERE id = $1` ,
+    [jobID]
+  ).then(data => {
+    db.query(
+      `SELECT * FROM articles
+    WHERE articles.jobs_id = $1`,
+      [jobID]
+    ).then(data1 => { 
+      const returnedData = {article: data1.rows, job:data.rows[0]};
+      res.json(returnedData)
+    })
+  })
+})
 
 
 app.post('/quizresults', (req, res) => {
@@ -117,7 +145,8 @@ app.post('/quizresults', (req, res) => {
   console.log(req.body)
 });
 
-app.post('/schedule'), (req, res) => {};
+
+app.post('/schedule'), (req, res) => { };
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
