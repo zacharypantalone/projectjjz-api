@@ -128,8 +128,14 @@ app.get('/careerinfo/:jobId', (req, res) => {
     WHERE articles.jobs_id = $1`,
       [jobID],
     ).then(data1 => {
-      const returnedData = { article: data1.rows, job: data.rows[0] };
+      db.query(
+        `SELECT * FROM learning_links
+      WHERE learning_links.jobs_id = $1`,
+        [jobID],
+      ).then(data2 => {
+      const returnedData = { article: data1.rows, job: data.rows[0], learning: data2.rows };
       res.json(returnedData);
+      });
     });
   });
 });
