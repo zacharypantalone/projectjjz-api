@@ -135,7 +135,7 @@ app.get('/careerinfo/:jobId', (req, res) => {
   });
 });
 
-app.post('/quizresults', req => {
+app.post('/quizresults', (req, res) => {
   const userId = req.session.userId;
 
   db.query(
@@ -143,7 +143,9 @@ app.post('/quizresults', req => {
     VALUES ($1, $2, $3, $4)
     `,
     [userId, 1, 2, 3],
-  );
+  ).then(() => {
+    res.status(201).send({ Message: 'Quiz Results posted successfully' });
+  });
 });
 
 app.delete('/quizresults', (req, res) => {
