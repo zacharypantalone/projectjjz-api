@@ -11,17 +11,6 @@ DROP TABLE IF EXISTS learning_links CASCADE;
 DROP TABLE IF EXISTS tests CASCADE;
 DROP TABLE IF EXISTS quiz CASCADE;
 
-
--- Create DATABASE line is required to house the tables
-
-
--- This is a dummy table with one record inserted into it
-CREATE TABLE tests (
-  id SERIAL PRIMARY KEY NOT NULL,
-  body VARCHAR(255) NOT NULL
-);
--- Commented for testing purposes - There are syntax errors to test here
-
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   first_name VARCHAR(255) NOT NULL,
@@ -31,12 +20,6 @@ CREATE TABLE users (
   password_confirmation VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
--- CREATE TABLE user_quiz (
---   id SERIAL PRIMARY KEY NOT NULL,
---   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
---   quiz_taken BOOLEAN 
--- );
 
 CREATE TABLE careers (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -70,11 +53,6 @@ CREATE TABLE articles (
   article VARCHAR(255),
   jobs_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE
 );
--- CREATE TABLE quiz (
---   id SERIAL PRIMARY KEY NOT NULL,
---   quiz_name VARCHAR(255)
--- );
-
 
 CREATE TABLE questions (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -90,6 +68,7 @@ CREATE TABLE quiz_results (
   job_two_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
   job_three_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE
 );
+
 -- CREATE TABLE mentors (
 --   id SERIAL PRIMARY KEY NOT NULL,
 --   job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
@@ -97,14 +76,6 @@ CREATE TABLE quiz_results (
 --   last_name VARCHAR(255) NOT NULL,
 --   available_times VARCHAR(255),
 --   booked_times VARCHAR(255),
---   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
--- );
-
--- CREATE TABLE articles (
---   id SERIAL PRIMARY KEY NOT NULL,
---   title VARCHAR(255),
---   job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
---   body_hyperlink TEXT,
 --   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
 
