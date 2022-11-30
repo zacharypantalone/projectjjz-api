@@ -57,7 +57,8 @@ app.post('/register', (req, res) => {
 
   db.query(
     `
-  INSERT INTO users (first_name, last_name, email, password, password_confirmation) VALUES ($1,$2,$3,$4,$5)
+  INSERT INTO users (first_name, last_name, email, password, password_confirmation) 
+  VALUES ($1,$2,$3,$4,$5)
   `,
     [firstname, lastname, email, password, passwordconfirm],
   );
