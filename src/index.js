@@ -134,29 +134,15 @@ app.get('/careerinfo/:jobId', (req, res) => {
   });
 });
 
-app.post('/quizresults', (req, res) => {
-  const userId = req.session.userID;
-  const [one, two, three] = [...req.body];
+app.post('/quizresults', req => {
+  const userId = req.session.userId;
 
   db.query(
-    `
-    INSERT INTO
-     quiz_results
-    (user_id,
-    job_one_id,
-    job_two_id,
-    job_three_id)
-    VALUES
-    ($1,
-     $2,
-    $3,
-    $4)
+    `INSERT INTO quiz_results (user_id, job_one_id, job_two_id, job_three_id)
+    VALUES ($1, $2, $3, $4)
     `,
-    [userId, one, two, three],
+    [userId, 1, 2, 3],
   );
-
-  console.log('post to quiz results has been hit!');
-  console.log(req.body);
 });
 
 app.delete('/quizresults', (req, res) => {
