@@ -1,5 +1,3 @@
--- CREATE DATABASE careersquared;
-
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS appointments CASCADE;
 DROP TABLE IF EXISTS mentors CASCADE;
@@ -12,8 +10,6 @@ DROP TABLE IF EXISTS articles CASCADE;
 DROP TABLE IF EXISTS tests CASCADE;
 DROP TABLE IF EXISTS quiz CASCADE;
 DROP TABLE IF EXISTS user_quiz CASCADE;
--- Create DATABASE line is required to house the tables
-
 -- This is a dummy table with one record inserted into it
 CREATE TABLE tests (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -30,13 +26,11 @@ CREATE TABLE users (
   password_confirmation VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-
-CREATE TABLE user_quiz (
-  id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  quiz_taken BOOLEAN 
-);
+-- CREATE TABLE user_quiz (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+--   quiz_taken BOOLEAN 
+-- );
 
 CREATE TABLE careers (
   id SERIAL PRIMARY KEY NOT NULL,
@@ -58,28 +52,26 @@ CREATE TABLE jobs (
   articles VARCHAR(500),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE TABLE quiz (
-  id SERIAL PRIMARY KEY NOT NULL,
-  quiz_name VARCHAR(255)
-);
+-- CREATE TABLE quiz (
+--   id SERIAL PRIMARY KEY NOT NULL,
+--   quiz_name VARCHAR(255)
+-- );
 
 
 CREATE TABLE questions (
   id SERIAL PRIMARY KEY NOT NULL,
   question VARCHAR(255),
   answer_one VARCHAR(255),
-  answer_two VARCHAR(255),
-  quiz_id INTEGER REFERENCES quiz(id) ON DELETE CASCADE
+  answer_two VARCHAR(255)
 );
 
 CREATE TABLE quiz_results (
   id SERIAL PRIMARY KEY NOT NULL,
-  quiz_id INTEGER REFERENCES quiz(id) ON DELETE CASCADE,
-  job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  job_one_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
+  job_two_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
+  job_three_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE
 );
-
-
 -- CREATE TABLE mentors (
 --   id SERIAL PRIMARY KEY NOT NULL,
 --   job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
@@ -89,8 +81,6 @@ CREATE TABLE quiz_results (
 --   booked_times VARCHAR(255),
 --   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );
-
-
 
 -- CREATE TABLE articles (
 --   id SERIAL PRIMARY KEY NOT NULL,

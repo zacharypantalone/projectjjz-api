@@ -70,17 +70,17 @@ INSERT INTO quiz (quiz_name) VALUES ('Quiz 1');
 --  /////////      questions       ////////////
 --  ///////////////////////////////////////////
 
-INSERT INTO questions (question, answer_one, answer_two, quiz_id) VALUES ('Would you prefer to work on-site or remotely?', 'Remotely', 'On site', 1);
-INSERT INTO questions (question, answer_one, answer_two, quiz_id) VALUES ('What is your strongest skill?', 'Logical thinking', 'Communication', 1);
-INSERT INTO questions (question, answer_one, answer_two, quiz_id) VALUES ('Do you prefer manipulating data, or creative tasks?', 'I love data!', 'I love creating!', 1);
-INSERT INTO questions (question, answer_one, answer_two, quiz_id) VALUES ('Would you prefer to create application for users or tools for professionals?', 'I want to create apps for the everyday joe.', 'I want to create apps for all my fellow geeks.', 1);
-INSERT INTO questions (question, answer_one, answer_two, quiz_id) VALUES ('In your day-to-day, would you enjoy working with informational-based, or visual-based programs?', 'I''m more of and informational person', 'I''m more of a visual person', 1);
+INSERT INTO questions (question, answer_one, answer_two) VALUES ('Would you prefer to work on-site or remotely?', 'Remotely', 'On site');
+INSERT INTO questions (question, answer_one, answer_two) VALUES ('What is your strongest skill?', 'Logical thinking', 'Communication');
+INSERT INTO questions (question, answer_one, answer_two) VALUES ('Do you prefer manipulating data, or creative tasks?', 'I love data!', 'I love creating!');
+INSERT INTO questions (question, answer_one, answer_two) VALUES ('Would you prefer to create application for users or tools for professionals?', 'I want to create apps for the everyday joe.', 'I want to create apps for all my fellow geeks.');
+INSERT INTO questions (question, answer_one, answer_two) VALUES ('In your day-to-day, would you enjoy working with informational-based, or visual-based programs?', 'I''m more of and informational person', 'I''m more of a visual person');
 
 --  ///////////////////////////////////////////
 --  /////////      quiz results    //////////// - JOIN TABLE BETWEEN QUIZ ID AND JOBS
 --  ///////////////////////////////////////////
 
-INSERT INTO quiz_results (quiz_id, job_id) VALUES (1, 1); 
+INSERT INTO quiz_results (user_id, job_one_id, job_two_id, job_three_id) VALUES (1, 1, 2, 3);
 
 
 --Test seed for the 'tests' table
