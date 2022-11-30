@@ -92,16 +92,19 @@ app.get('/quizresults', (req, res) => {
 app.get('/careerinfo/:jobId', (req, res) => {
   const jobID = req.params.jobId
   db.query(
-    `SELECT * FROM jobs
-    WHERE id = $1`,
+    `SELECT * FROM jobs 
+    WHERE id = $1` ,
     [jobID]
-  )
-    .then(data => {
-
-      console.log("*******", data.rows)
-      res.json(data.rows[0])
+  ).then(data => {
+    db.query(
+      `SELECT * FROM articles
+    WHERE articles.jobs_id = $1`,
+      [jobID]
+    ).then(data1 => { 
+      const returnedData = {article: data1.rows, job:data.rows[0]};
+      res.json(returnedData)
     })
-    
+  })
 })
 
 
