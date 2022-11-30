@@ -18,6 +18,17 @@ app.get('/test', (req, res) => {
   res.status(200).send('Test message: Back-end is ok');
 });
 
+app.get('/user', (req, res) => {
+  db.query(
+    `SELECT first_name
+     FROM users
+     WHERE id=$1`,
+    [req.session.userId],
+  ).then(data => {
+    res.send(data.rows[0]);
+  });
+});
+
 app.post('/login', (req, res) => {
   db.query(
     `SELECT id, email, password
@@ -69,84 +80,80 @@ app.post('/logout', (req, res) => {
 });
 
 app.get('/quizquestions', (req, res) => {
-  console.log('Request came through!')
-  db.query(
-    `SELECT * FROM questions`
-  )
-  .then(data => res.json(data.rows));
+  db.query(`SELECT * FROM questions`).then(data => res.json(data.rows));
 });
 
-
 app.get('/quizresults', (req, res) => {
-  console.log(req.session)
-  const userID = req.session.userId
+  const userID = req.session.userId;
   db.query(
     `SELECT job_one_id, job_two_id, job_three_id
       FROM quiz_results
       WHERE user_id=$1
       `,
     [userID],
-  ).then(data1 =>
-    db.query(
-      `SELECT title, img, body FROM jobs 
-      WHERE id IN ($1, $2, $3);`,
-      [data1.rows[0].job_one_id, data1.rows[0].job_two_id, data1.rows[0].job_three_id]
-    )
   )
-    .then(data2 => res.json(data2.rows));
+    .then(data1 => {
+      if (data1.rows.length > 0) {
+        return db.query(
+          `SELECT title, img, body FROM jobs 
+        WHERE id IN ($1, $2, $3);`,
+          [
+            data1.rows[0].job_one_id,
+            data1.rows[0].job_two_id,
+            data1.rows[0].job_three_id,
+          ],
+        );
+      } else {
+        return null;
+      }
+    })
+    .then(data2 => {
+      if (data2 !== null) {
+        res.json(data2.rows);
+      } else {
+        res.status(404).send({ Message: 'Quiz Results not found' });
+      }
+    });
 });
 
-
-
-
 app.get('/careerinfo/:jobId', (req, res) => {
-  const jobID = req.params.jobId
+  const jobID = req.params.jobId;
   db.query(
     `SELECT * FROM jobs 
-    WHERE id = $1` ,
-    [jobID]
+    WHERE id = $1`,
+    [jobID],
   ).then(data => {
     db.query(
       `SELECT * FROM articles
     WHERE articles.jobs_id = $1`,
-      [jobID]
-    ).then(data1 => { 
-      const returnedData = {article: data1.rows, job:data.rows[0]};
-      res.json(returnedData)
-    })
-  })
-})
-
-
-app.post('/quizresults', (req, res) => {
-  const userId = req.session.userID;
-  const [one, two, three] = [...req.body];
-  
-
-  db.query(
-    `
-    INSERT INTO
-     quiz_results
-    (user_id,
-    job_one_id,
-    job_two_id,
-    job_three_id)
-    VALUES
-    ($1,
-     $2,
-    $3,
-    $4)
-    `, [userId, one, two, three]
-    )
-
-
-    
-  console.log("post to quiz results has been hit!")
-  console.log(req.body)
+      [jobID],
+    ).then(data1 => {
+      const returnedData = { article: data1.rows, job: data.rows[0] };
+      res.json(returnedData);
+    });
+  });
 });
 
+app.post('/quizresults', req => {
+  const userId = req.session.userId;
 
-app.post('/schedule'), (req, res) => { };
+  db.query(
+    `INSERT INTO quiz_results (user_id, job_one_id, job_two_id, job_three_id)
+    VALUES ($1, $2, $3, $4)
+    `,
+    [userId, 1, 2, 3],
+  );
+});
+
+app.delete('/quizresults', (req, res) => {
+  db.query(
+    `DELETE FROM quiz_results
+     WHERE user_id=$1`,
+    [req.session.userId],
+  );
+});
+
+app.post('/schedule'), (req, res) => {};
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
