@@ -80,12 +80,11 @@ app.post('/logout', (req, res) => {
 });
 
 app.get('/quizquestions', (req, res) => {
-  console.log('Request came through!');
   db.query(`SELECT * FROM questions`).then(data => res.json(data.rows));
 });
 
 app.get('/quizresults', (req, res) => {
-  console.log(req.session);
+  // console.log(req.session);
   const userID = req.session.userId;
   db.query(
     `SELECT job_one_id, job_two_id, job_three_id
@@ -149,6 +148,14 @@ app.post('/quizresults', (req, res) => {
 
   console.log('post to quiz results has been hit!');
   console.log(req.body);
+});
+
+app.delete('/quizresults', (req, res) => {
+  db.query(
+    `DELETE FROM quiz_results
+     WHERE user_id=$1`,
+    [req.session.userId],
+  );
 });
 
 app.post('/schedule'), (req, res) => {};
