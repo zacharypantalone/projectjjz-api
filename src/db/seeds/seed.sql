@@ -34,6 +34,16 @@ INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.udemy.com/course
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.ecuad.ca/academics/teen-programs/summer-institute-for-teens/creative-coding-web-design-sit', 1);
 
 --  ///////////////////////////////////////////
+--  /////////      articles            ////////
+--  ///////////////////////////////////////////
+
+INSERT INTO articles (article, jobs_id) VALUES ('https://interestingengineering.com/culture/everything-you-need-to-know-about-the-artistic-world-of-creative-coding', 1);
+INSERT INTO articles (article, jobs_id) VALUES ('https://www.udemy.com/course/code-art/', 1);
+-- INSERT INTO articles (article, jobs_id) VALUES ('', 2);
+-- INSERT INTO articles (article, jobs_id) VALUES ('', 3);
+
+
+--  ///////////////////////////////////////////
 --  /////////      questions           ////////
 --  ///////////////////////////////////////////
 
