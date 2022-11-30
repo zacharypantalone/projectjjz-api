@@ -68,6 +68,15 @@ app.post('/logout', (req, res) => {
   res.status(200).send();
 });
 
+app.get('/quizquestions', (req, res) => {
+  console.log('Request came through!')
+  db.query(
+    `SELECT * FROM questions`
+  )
+  .then(data => res.json(data.rows));
+});
+
+
 app.get('/quizresults', (req, res) => {
   console.log(req.session)
   const userID = req.session.userId
@@ -86,6 +95,7 @@ app.get('/quizresults', (req, res) => {
   )
     .then(data2 => res.json(data2.rows));
 });
+
 
 
 
@@ -108,9 +118,33 @@ app.get('/careerinfo/:jobId', (req, res) => {
 })
 
 
+app.post('/quizresults', (req, res) => {
+  const userId = req.session.userID;
+  const [one, two, three] = [...req.body];
+  
 
-app.post('/quizresults'), (req, res) => {
-};
+  db.query(
+    `
+    INSERT INTO
+     quiz_results
+    (user_id,
+    job_one_id,
+    job_two_id,
+    job_three_id)
+    VALUES
+    ($1,
+     $2,
+    $3,
+    $4)
+    `, [userId, one, two, three]
+    )
+
+
+    
+  console.log("post to quiz results has been hit!")
+  console.log(req.body)
+});
+
 
 app.post('/schedule'), (req, res) => { };
 

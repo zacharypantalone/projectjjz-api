@@ -1,5 +1,3 @@
--- CREATE DATABASE careersquared;
-
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS appointments CASCADE;
 DROP TABLE IF EXISTS mentors CASCADE;
@@ -13,7 +11,9 @@ DROP TABLE IF EXISTS learning_links CASCADE;
 DROP TABLE IF EXISTS tests CASCADE;
 DROP TABLE IF EXISTS quiz CASCADE;
 
+
 -- Create DATABASE line is required to house the tables
+
 
 -- This is a dummy table with one record inserted into it
 CREATE TABLE tests (
@@ -31,7 +31,6 @@ CREATE TABLE users (
   password_confirmation VARCHAR(255) NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 
 -- CREATE TABLE user_quiz (
 --   id SERIAL PRIMARY KEY NOT NULL,
@@ -91,8 +90,6 @@ CREATE TABLE quiz_results (
   job_two_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
   job_three_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE
 );
-
-
 -- CREATE TABLE mentors (
 --   id SERIAL PRIMARY KEY NOT NULL,
 --   job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,

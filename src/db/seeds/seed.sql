@@ -89,7 +89,9 @@ INSERT INTO questions (question, answer_one, answer_two) VALUES ('In your day-to
 --  /////////      quiz results    //////////// 
 --  ///////////////////////////////////////////
 
-INSERT INTO quiz_results (user_id, job_one_id, job_two_id, job_three_id) VALUES (1, 1, NULL, NULL); 
+
+INSERT INTO quiz_results (user_id, job_one_id, job_two_id, job_three_id) VALUES (1, 1, 2, 3);
+
 
 
 --Test seed for the 'tests' table
