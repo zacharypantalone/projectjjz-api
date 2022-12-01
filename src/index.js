@@ -57,7 +57,8 @@ app.post('/register', (req, res) => {
 
   db.query(
     `
-  INSERT INTO users (first_name, last_name, email, password, password_confirmation) VALUES ($1,$2,$3,$4,$5)
+  INSERT INTO users (first_name, last_name, email, password, password_confirmation) 
+  VALUES ($1,$2,$3,$4,$5)
   `,
     [firstname, lastname, email, password, passwordconfirm],
   );
@@ -85,35 +86,30 @@ app.get('/quizquestions', (req, res) => {
 
 app.get('/quizresults', (req, res) => {
   const userID = req.session.userId;
-  db.query(
-    `SELECT job_one_id, job_two_id, job_three_id
-      FROM quiz_results
-      WHERE user_id=$1
-      `,
-    [userID],
-  )
-    .then(data1 => {
-      if (data1.rows.length > 0) {
-        return db.query(
-          `SELECT title, img, body FROM jobs 
+  if (userID) {
+    db.query(
+      `SELECT job_one_id, job_two_id, job_three_id
+        FROM quiz_results
+        WHERE user_id=$1
+        `,
+      [userID],
+    ).then(data1 => {
+      db.query(
+        `SELECT title, img, body FROM jobs 
         WHERE id IN ($1, $2, $3);`,
-          [
-            data1.rows[0].job_one_id,
-            data1.rows[0].job_two_id,
-            data1.rows[0].job_three_id,
-          ],
-        );
-      } else {
-        return null;
-      }
-    })
-    .then(data2 => {
-      if (data2 !== null) {
+        [
+          data1.rows[0].job_one_id,
+          data1.rows[0].job_two_id,
+          data1.rows[0].job_three_id,
+        ],
+      ).then(data2 => {
+        console.log(data2);
         res.json(data2.rows);
-      } else {
-        res.status(404).send({ Message: 'Quiz Results not found' });
-      }
+      });
     });
+  } else {
+    res.status(401).send({ Message: 'Quiz Results not found' });
+  }
 });
 
 app.get('/careerinfo/:jobId', (req, res) => {
@@ -140,7 +136,7 @@ app.get('/careerinfo/:jobId', (req, res) => {
   });
 });
 
-app.post('/quizresults', req => {
+app.post('/quizresults', (req, res) => {
   const userId = req.session.userId;
 
   db.query(
@@ -148,7 +144,9 @@ app.post('/quizresults', req => {
     VALUES ($1, $2, $3, $4)
     `,
     [userId, 1, 2, 3],
-  );
+  ).then(() => {
+    res.status(201).send({ Message: 'Quiz Results posted successfully' });
+  });
 });
 
 app.delete('/quizresults', (req, res) => {
