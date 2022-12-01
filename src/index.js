@@ -1,4 +1,5 @@
 const port = 8001;
+const { response } = require('express');
 const express = require('express');
 const session = require('express-session');
 const app = express();
@@ -59,20 +60,18 @@ app.post('/register', (req, res) => {
     `
   INSERT INTO users (first_name, last_name, email, password, password_confirmation) 
   VALUES ($1,$2,$3,$4,$5)
+  RETURNING *
   `,
     [firstname, lastname, email, password, passwordconfirm],
-  );
-  db.query(
-    `
-    SELECT id from users
-    WHERE email = $1`,
-    [email],
-  ).then(data => {
-    req.session.userId = data.rows[0].id;
-    res.status(201).send({
-      Message: 'User registered successfully',
+  )
+    .then(data => {
+      req.session.userId = data.rows[0].id;
+    })
+    .then(() => {
+      res.status(201).send({
+        Message: 'User registered successfully',
+      });
     });
-  });
 });
 
 app.post('/logout', (req, res) => {
@@ -94,6 +93,10 @@ app.get('/quizresults', (req, res) => {
         `,
       [userID],
     ).then(data1 => {
+      if (!data1.rows.length > 0) {
+        res.send([]);
+        return;
+      }
       db.query(
         `SELECT title, img, body FROM jobs 
         WHERE id IN ($1, $2, $3);`,
@@ -103,7 +106,6 @@ app.get('/quizresults', (req, res) => {
           data1.rows[0].job_three_id,
         ],
       ).then(data2 => {
-        console.log(data2);
         res.json(data2.rows);
       });
     });
@@ -129,8 +131,12 @@ app.get('/careerinfo/:jobId', (req, res) => {
       WHERE learning_links.jobs_id = $1`,
         [jobID],
       ).then(data2 => {
-      const returnedData = { article: data1.rows, job: data.rows[0], learning: data2.rows };
-      res.json(returnedData);
+        const returnedData = {
+          article: data1.rows,
+          job: data.rows[0],
+          learning: data2.rows,
+        };
+        res.json(returnedData);
       });
     });
   });
