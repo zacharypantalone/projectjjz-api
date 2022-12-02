@@ -70,8 +70,7 @@ CREATE TABLE mentors (
   job_id INTEGER REFERENCES jobs(id) ON DELETE CASCADE,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
-  -- available_times VARCHAR(255),
-  -- booked_times VARCHAR(255),
+  blurb TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

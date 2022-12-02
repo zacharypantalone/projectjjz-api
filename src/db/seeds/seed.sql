@@ -73,15 +73,15 @@ INSERT INTO quiz_results (user_id, job_one_id, job_two_id, job_three_id) VALUES 
 --  /////////       mentors     ///////////////
 --  ///////////////////////////////////////////
 
-INSERT INTO mentors (job_id, first_name, last_name) VALUES (1, 'Suzie', 'Summers');
-INSERT INTO mentors (job_id, first_name, last_name) VALUES (1, 'Maruxa', 'Kumar');
-INSERT INTO mentors (job_id, first_name, last_name) VALUES (1, 'Uisdean', 'Sabina');
-INSERT INTO mentors (job_id, first_name, last_name) VALUES (2, 'Paul', 'Parsons');
-INSERT INTO mentors (job_id, first_name, last_name) VALUES (2, 'Susilo', 'Cecilia');
-INSERT INTO mentors (job_id, first_name, last_name) VALUES (2, 'Bolormaa', 'Samir');
-INSERT INTO mentors (job_id, first_name, last_name) VALUES (3, 'Ned', 'Nielson');
-INSERT INTO mentors (job_id, first_name, last_name) VALUES (3, 'Abra', 'Tellervo');
-INSERT INTO mentors (job_id, first_name, last_name) VALUES (3, 'Judith', 'Kerime');
+INSERT INTO mentors (job_id, first_name, last_name, blurb) VALUES (1, 'Paul', 'Parsons','');
+INSERT INTO mentors (job_id, first_name, last_name, blurb) VALUES (1, 'Susilo', 'Cecilia','');
+INSERT INTO mentors (job_id, first_name, last_name, blurb) VALUES (1, 'Bolormaa', 'Samir','');
+INSERT INTO mentors (job_id, first_name, last_name, blurb) VALUES (2, 'Suzie', 'Summers','With 10+ years of experience in Web Development, Suzie has kept her passion for her work by focusing in her local startup community. Always happy to pay it forward she specializes in Full-stack Web Development');
+INSERT INTO mentors (job_id, first_name, last_name, blurb) VALUES (2, 'Maruxa', 'Kumar','Maruxa has been working as a Web Developer for 3 years in a large tech company. Specializing in Front-End development, Maruxa is a wealth of knowledge when it comes to working in larger tech companies');
+INSERT INTO mentors (job_id, first_name, last_name, blurb) VALUES (2, 'Uisdean', 'Sabina','Uisdean is a newly graduated Web Development Bootcamp Alumni! If you''d like to speak with someone who can tell you exactly what it takes to become a Web Developer in today''s world, Uisdean is the mentor for you!');
+INSERT INTO mentors (job_id, first_name, last_name, blurb) VALUES (3, 'Ned', 'Nielson','');
+INSERT INTO mentors (job_id, first_name, last_name, blurb) VALUES (3, 'Abra', 'Tellervo','');
+INSERT INTO mentors (job_id, first_name, last_name, blurb) VALUES (3, 'Judith', 'Kerime','');
 
 --  ///////////////////////////////////////////
 --  /////////       appointments     //////////
