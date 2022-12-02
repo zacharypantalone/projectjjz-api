@@ -66,17 +66,22 @@ INSERT INTO questions (question, answer_one, answer_two) VALUES ('In your day-to
 --  /////////      quiz results    //////////// 
 --  ///////////////////////////////////////////
 
-INSERT INTO quiz_results (user_id, job_one_id, job_two_id, job_three_id) VALUES (1, 1, NULL, NULL);
+INSERT INTO quiz_results (user_id, job_one_id, job_two_id, job_three_id) VALUES (1, 1, 2, 3);
 
 
 --  ///////////////////////////////////////////
 --  /////////       mentors     ///////////////
 --  ///////////////////////////////////////////
 
--- INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (info here);
--- INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (1, 'Suzie', 'Summers',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
--- INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (2, 'Paul', 'Parsons',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
--- INSERT INTO mentors (job_id, first_name, last_name, available_times, booked_times, created_at, updated_at) VALUES (3, 'Ned', 'Nielson',  FIGURE OUT DATES, FIGURE OUT BOOKED TIMES);
+INSERT INTO mentors (job_id, first_name, last_name) VALUES (1, 'Suzie', 'Summers');
+INSERT INTO mentors (job_id, first_name, last_name) VALUES (1, 'Maruxa', 'Kumar');
+INSERT INTO mentors (job_id, first_name, last_name) VALUES (1, 'Uisdean', 'Sabina');
+INSERT INTO mentors (job_id, first_name, last_name) VALUES (2, 'Paul', 'Parsons');
+INSERT INTO mentors (job_id, first_name, last_name) VALUES (2, 'Susilo', 'Cecilia');
+INSERT INTO mentors (job_id, first_name, last_name) VALUES (2, 'Bolormaa', 'Samir');
+INSERT INTO mentors (job_id, first_name, last_name) VALUES (3, 'Ned', 'Nielson');
+INSERT INTO mentors (job_id, first_name, last_name) VALUES (3, 'Abra', 'Tellervo');
+INSERT INTO mentors (job_id, first_name, last_name) VALUES (3, 'Judith', 'Kerime');
 
 --  ///////////////////////////////////////////
 --  /////////       appointments     //////////
