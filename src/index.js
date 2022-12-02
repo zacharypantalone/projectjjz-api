@@ -1,5 +1,4 @@
 const port = 8001;
-const { response } = require('express');
 const express = require('express');
 const session = require('express-session');
 const app = express();
@@ -98,7 +97,8 @@ app.get('/quizresults', (req, res) => {
         return;
       }
       db.query(
-        `SELECT title, img, body FROM jobs 
+        `SELECT id, title, img, body 
+        FROM jobs 
         WHERE id IN ($1, $2, $3);`,
         [
           data1.rows[0].job_one_id,
@@ -163,7 +163,14 @@ app.delete('/quizresults', (req, res) => {
   );
 });
 
-app.post('/schedule'), (req, res) => {};
+app.get('/mentors', (req, res) => {
+  db.query(
+    `
+    SELECT * from mentors`,
+  ).then(data => res.status(201).send(data.rows));
+});
+
+// app.post('/schedule'), (req, res) => {};
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
