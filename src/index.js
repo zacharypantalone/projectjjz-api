@@ -170,6 +170,18 @@ app.get('/mentors', (req, res) => {
   ).then(data => res.status(201).send(data.rows));
 });
 
+app.get('/days', (req, res) => {
+  db.query(`SELECT id,day from days`).then(data =>
+    res.status(201).send(data.rows),
+  );
+});
+
+app.get('/times', (req, res) => {
+  db.query(`SELECT id,time from times`).then(data =>
+    res.status(201).send(data.rows),
+  );
+});
+
 // app.post('/schedule'), (req, res) => {};
 
 app.listen(port, () => {

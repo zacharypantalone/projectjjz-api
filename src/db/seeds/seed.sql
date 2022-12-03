@@ -83,13 +83,31 @@ INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (3, 
 INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (3, 'Judith', 'Kerime','','https://i.pravatar.cc/150?img=19');
 
 --  ///////////////////////////////////////////
+--  /////////       days             //////////
+--  ///////////////////////////////////////////
+
+INSERT INTO days (day) VALUES ('Monday');
+INSERT INTO days (day) VALUES ('Tuesday');
+INSERT INTO days (day) VALUES ('Wednesday');
+INSERT INTO days (day) VALUES ('Thursday');
+INSERT INTO days (day) VALUES ('Friday');
+
+
+--  ///////////////////////////////////////////
+--  /////////       times            //////////
+--  ///////////////////////////////////////////
+
+INSERT INTO times (time) VALUES ('9am');
+INSERT INTO times (time) VALUES ('10am');
+INSERT INTO times (time) VALUES ('11am');
+INSERT INTO times (time) VALUES ('12pm');
+INSERT INTO times (time) VALUES ('1pm');
+
+--  ///////////////////////////////////////////
 --  /////////       appointments     //////////
 --  ///////////////////////////////////////////
 
--- INSERT INTO appointments (user_id, mentor_id, appointment_time, created_at, updated_at) VALUES (info here);
--- INSERT INTO appointments (user_id, mentor_id, appointment_time, created_at, updated_at) VALUES (info here)
--- INSERT INTO appointments (user_id, mentor_id, appointment_time, created_at, updated_at) VALUES (info here)
--- INSERT INTO appointments (user_id, mentor_id, appointment_time, created_at, updated_at) VALUES (info here)
+
 
 
 
