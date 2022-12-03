@@ -182,6 +182,15 @@ app.get('/times', (req, res) => {
   );
 });
 
+app.get('/appointments', (req, res) => {
+  const mentor = req.query.id;
+  db.query(
+    `SELECT id,mentor_id,time_id from appointments
+  WHERE mentor_id=$1`,
+    [mentor],
+  ).then(data => res.status(201).send(data.rows));
+});
+
 // app.post('/schedule'), (req, res) => {};
 
 app.listen(port, () => {
