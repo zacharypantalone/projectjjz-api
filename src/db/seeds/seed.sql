@@ -56,6 +56,7 @@ INSERT INTO articles (article, jobs_id) VALUES ('https://www.guru99.com/what-is-
 --  /////////      questions           ////////
 --  ///////////////////////////////////////////
 
+INSERT INTO questions (question, answer_one) VALUES ('Welcome to our quiz!', 'Click here to start');
 INSERT INTO questions (question, answer_one, answer_two) VALUES ('Would you prefer to work on-site or remotely?', 'Remotely', 'On site');
 INSERT INTO questions (question, answer_one, answer_two) VALUES ('What is your strongest skill?', 'Logical thinking', 'Communication');
 INSERT INTO questions (question, answer_one, answer_two) VALUES ('Do you prefer manipulating data, or creative tasks?', 'I love data!', 'I love creating!');
