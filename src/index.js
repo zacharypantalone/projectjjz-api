@@ -83,9 +83,10 @@ app.get('/quizquestions', (req, res) => {
 });
 
 app.get('/quizresults', (req, res) => {
-  const userID = req.session.userId;
+  // Use this variable during production or if using multiple users
+  // const userID = req.session.userId;
   // Use the variable below when testing code to avoid re-logging in
-  // const userID = 1;
+  const userID = 1;
   if (userID) {
     db.query(
       `SELECT job_one_id, job_two_id, job_three_id
