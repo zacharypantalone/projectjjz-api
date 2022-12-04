@@ -84,6 +84,8 @@ app.get('/quizquestions', (req, res) => {
 
 app.get('/quizresults', (req, res) => {
   const userID = req.session.userId;
+  // Use the variable below when testing code to avoid re-logging in
+  // const userID = 1;
   if (userID) {
     db.query(
       `SELECT job_one_id, job_two_id, job_three_id
@@ -184,12 +186,14 @@ app.get('/times', (req, res) => {
 
 app.get('/appointments', (req, res) => {
   const mentor = req.query.id;
+  const day = req.query.day;
   db.query(
     `
     SELECT id,mentor_id,day_id,time_id from appointments
     WHERE mentor_id=$1
+    AND day_id=$2
     `,
-    [mentor],
+    [mentor, day],
   ).then(data => res.status(201).send(data.rows));
 });
 
