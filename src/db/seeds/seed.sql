@@ -107,7 +107,13 @@ INSERT INTO times (time) VALUES ('1pm');
 --  /////////       appointments     //////////
 --  ///////////////////////////////////////////
 
-INSERT INTO appointments (user_id,mentor_id,time_id) VALUES (1,4,1)
+INSERT INTO appointments (
+  user_id, 
+  mentor_id, 
+  day_id, 
+  time_id) 
+  
+  VALUES (1,4,1,1)
 
 
 

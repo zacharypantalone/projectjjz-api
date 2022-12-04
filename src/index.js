@@ -185,10 +185,27 @@ app.get('/times', (req, res) => {
 app.get('/appointments', (req, res) => {
   const mentor = req.query.id;
   db.query(
-    `SELECT id,mentor_id,time_id from appointments
-  WHERE mentor_id=$1`,
+    `
+    SELECT id,mentor_id,day_id,time_id from appointments
+    WHERE mentor_id=$1
+    `,
     [mentor],
   ).then(data => res.status(201).send(data.rows));
+});
+
+app.post('/appointments', (req, res) => {
+  db.query(
+    `INSERT INTO appointments
+    (user_id,mentor_id,day_id,time_id)
+    VALUES ($1,$2,$3,$4)
+    RETURNING *
+    `,
+    [req.session.userId, req.body[0].id, req.body[1], req.body[2]],
+  ).then(data => {
+    res
+      .status(201)
+      .send({ Message: 'Appointment posted successfully', Data: data.rows[0] });
+  });
 });
 
 // app.post('/schedule'), (req, res) => {};
