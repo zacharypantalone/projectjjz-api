@@ -28,7 +28,7 @@ VALUES (1,'https://static.vecteezy.com/system/resources/previews/008/517/363/ori
 --  /////////      learning_links      ////////
 --  ///////////////////////////////////////////
 
-INSERT INTO learning_links (link, jobs_id) VALUES ('https://thecodingtrain.com/tracks, https://www.kadenze.com/courses/the-nature-of-code-ii/info', 1);
+INSERT INTO learning_links (link, jobs_id) VALUES ('https://thecodingtrain.com/tracks', 1);
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.udemy.com/course/code-art/', 1);
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.ecuad.ca/academics/teen-programs/summer-institute-for-teens/creative-coding-web-design-sit', 1);
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.freecodecamp.org/', 2);
@@ -37,18 +37,16 @@ INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.thinkful.com/boo
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.lighthouselabs.ca/', 2);
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.freecodecamp.org/', 3);
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.udemy.com/courses/search/?q=backend+web+development&src=sac&kw=Back', 3);
-INSERT INTO learning_links (link, jobs_id) VALUES ('Software Engineering Online Bootcamp | 1-on-1 Mentorship | Thinkful™ https://www.lighthouselabs.ca/', 3);
+INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.lighthouselabs.ca/', 3);
 
 --  ///////////////////////////////////////////
 --  /////////      articles            ////////
 --  ///////////////////////////////////////////
 
 INSERT INTO articles (article, jobs_id) VALUES ('https://interestingengineering.com/culture/everything-you-need-to-know-about-the-artistic-world-of-creative-coding', 1);
-INSERT INTO articles (article, jobs_id) VALUES ('https://www.udemy.com/course/code-art/', 1);
 INSERT INTO articles (article, jobs_id) VALUES ('https://www.simplilearn.com/how-to-become-a-front-end-developer-article', 2);
 INSERT INTO articles (article, jobs_id) VALUES ('https://en.wikipedia.org/wiki/Front-end_web_development', 2);
 INSERT INTO articles (article, jobs_id) VALUES ('https://www.weareadam.com/blog/2020/11/a-day-in-the-life-of-a-front-end-developer?source=google.com', 2);
-INSERT INTO articles (article, jobs_id) VALUES ('Software Engineering Online Bootcamp | 1-on-1 Mentorship | Thinkful™', 3);
 INSERT INTO articles (article, jobs_id) VALUES ('https://www.guru99.com/what-is-backend-developer.html', 3);
 
 
