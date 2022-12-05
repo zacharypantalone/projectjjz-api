@@ -18,6 +18,7 @@ app.get('/test', (req, res) => {
   res.status(200).send('Test message: Back-end is ok');
 });
 
+
 app.get('/user', (req, res) => {
   db.query(
     `SELECT first_name
@@ -214,6 +215,7 @@ app.post('/appointments', (req, res) => {
 });
 
 // app.post('/schedule'), (req, res) => {};
+
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

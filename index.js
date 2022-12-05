@@ -4,8 +4,4 @@ const client = new Client({ connectionString: 'careersquared' });
 
 client.connect();
 
-
 module.exports = client;
-
-
-
