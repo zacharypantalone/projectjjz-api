@@ -28,7 +28,7 @@ VALUES (1,'https://static.vecteezy.com/system/resources/previews/008/517/363/ori
 --  /////////      learning_links      ////////
 --  ///////////////////////////////////////////
 
-INSERT INTO learning_links (link, jobs_id) VALUES ('https://thecodingtrain.com/tracks', 1);
+INSERT INTO learning_links (link, jobs_id) VALUES ('https://thecodingtrain.com/tracks, https://www.kadenze.com/courses/the-nature-of-code-ii/info', 1);
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.udemy.com/course/code-art/', 1);
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.ecuad.ca/academics/teen-programs/summer-institute-for-teens/creative-coding-web-design-sit', 1);
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.freecodecamp.org/', 2);
@@ -37,16 +37,18 @@ INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.thinkful.com/boo
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.lighthouselabs.ca/', 2);
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.freecodecamp.org/', 3);
 INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.udemy.com/courses/search/?q=backend+web+development&src=sac&kw=Back', 3);
-INSERT INTO learning_links (link, jobs_id) VALUES ('https://www.lighthouselabs.ca/', 3);
+INSERT INTO learning_links (link, jobs_id) VALUES ('Software Engineering Online Bootcamp | 1-on-1 Mentorship | Thinkful™ https://www.lighthouselabs.ca/', 3);
 
 --  ///////////////////////////////////////////
 --  /////////      articles            ////////
 --  ///////////////////////////////////////////
 
 INSERT INTO articles (article, jobs_id) VALUES ('https://interestingengineering.com/culture/everything-you-need-to-know-about-the-artistic-world-of-creative-coding', 1);
+INSERT INTO articles (article, jobs_id) VALUES ('https://www.udemy.com/course/code-art/', 1);
 INSERT INTO articles (article, jobs_id) VALUES ('https://www.simplilearn.com/how-to-become-a-front-end-developer-article', 2);
 INSERT INTO articles (article, jobs_id) VALUES ('https://en.wikipedia.org/wiki/Front-end_web_development', 2);
 INSERT INTO articles (article, jobs_id) VALUES ('https://www.weareadam.com/blog/2020/11/a-day-in-the-life-of-a-front-end-developer?source=google.com', 2);
+INSERT INTO articles (article, jobs_id) VALUES ('Software Engineering Online Bootcamp | 1-on-1 Mentorship | Thinkful™', 3);
 INSERT INTO articles (article, jobs_id) VALUES ('https://www.guru99.com/what-is-backend-developer.html', 3);
 
 
@@ -54,12 +56,12 @@ INSERT INTO articles (article, jobs_id) VALUES ('https://www.guru99.com/what-is-
 --  /////////      questions           ////////
 --  ///////////////////////////////////////////
 
-INSERT INTO questions (question, answer_one) VALUES ('Welcome to our quiz!', 'Click here to start');
-INSERT INTO questions (question, answer_one, answer_two) VALUES ('Would you prefer to work on-site or remotely?', 'Remotely', 'On site');
-INSERT INTO questions (question, answer_one, answer_two) VALUES ('What is your strongest skill?', 'Logical thinking', 'Communication');
-INSERT INTO questions (question, answer_one, answer_two) VALUES ('Do you prefer manipulating data, or creative tasks?', 'I love data!', 'I love creating!');
-INSERT INTO questions (question, answer_one, answer_two) VALUES ('Would you prefer to create application for users or tools for professionals?', 'I want to create apps for the everyday joe.', 'I want to create apps for all my fellow geeks.');
-INSERT INTO questions (question, answer_one, answer_two) VALUES ('In your day-to-day, would you enjoy working with informational-based, or visual-based programs?', 'I''m more of and informational person', 'I''m more of a visual person');
+INSERT INTO questions (answer_one) VALUES ('Start Your New Journey!');
+INSERT INTO questions (question, answer_one, answer_two) VALUES ('Ideally, what would the majority of your working week look like?', 'I''d like to work 100% remotely', 'I''d prefer to be in the office most of the time');
+INSERT INTO questions (question, answer_one, answer_two) VALUES ('Which one of these two skills do you think you can provide most to your new team?', 'Logical thinking', 'Communication');
+INSERT INTO questions (question, answer_one, answer_two) VALUES ('In your day-to-day, would you prefer to mainly manipulate pre-existing data, or would you be happier creating new features and products from scratch?', 'I love improving on pre-existing structures!', 'I want a blank state and the opportunity to create something unique!');
+INSERT INTO questions (question, answer_one, answer_two) VALUES ('From a high-level perspective, would you like to be part of a team that creates new applications that focus on users or would you like to create internal tools for professionals in your field?', 'Nothing makes me happier than providing a valuable product for the everyday user', 'It would be more rewarding for me if I knew I could improve the day-to-day lives of professionals in a similar position as myself.');
+INSERT INTO questions (question, answer_one, answer_two) VALUES ('While creating apps, or tools, would you prefer to focus on working with informational-based programs, such as direct coding, or would you like to work primarily with visual-based programs such as Figma and design boards?', 'Designing things scares me! I''ll stick with text-based programs please.', 'If I''m not looking at pretty shapes and colors I''m going to be upset.');
 
 --  ///////////////////////////////////////////
 --  /////////      quiz results    //////////// 
@@ -71,15 +73,15 @@ INSERT INTO quiz_results (user_id, job_one_id, job_two_id, job_three_id) VALUES 
 --  /////////       mentors     ///////////////
 --  ///////////////////////////////////////////
 
-INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (1, 'Paul', 'Parsons','','https://i.pravatar.cc/150?img=22');
-INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (1, 'Susilo', 'Cecilia','','https://i.pravatar.cc/150?img=5');
-INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (1, 'Bolormaa', 'Samir','','https://i.pravatar.cc/150?img=28');
+INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (1, 'Paul', 'Parsons','Paul is a creative at heart, from Graphic Design to Woodworking to creative coding he loves to talk all things creative! With 5+ years of experience Paul can provide a senior perspective on this career','https://i.pravatar.cc/150?img=22');
+INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (1, 'Susilo', 'Cecilia','Susilo has progressed to leading a team of creative coders as their Director. She can provide valuable insight into what makes a junior creative coder the best they can be.','https://i.pravatar.cc/150?img=5');
+INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (1, 'Bolormaa', 'Samir','Bolormaa gained their position as a creative coder just 6 months ago and is a great resource to speak with on how their first 6 months has been.','https://i.pravatar.cc/150?img=28');
 INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (2, 'Suzie', 'Summers','With 10+ years of experience in Web Development, Suzie has kept her passion for her work by focusing in her local startup community. Always happy to pay it forward she specializes in Full-stack Web Development','https://i.pravatar.cc/150?img=11');
 INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (2, 'Maruxa', 'Kumar','Maruxa has been working as a Web Developer for 3 years in a large tech company. Specializing in Front-End development, Maruxa is a wealth of knowledge when it comes to working in larger tech companies','https://i.pravatar.cc/150?img=9');
 INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (2, 'Uisdean', 'Sabina','Uisdean is a newly graduated Web Development Bootcamp Alumni! If you''d like to speak with someone who can tell you exactly what it takes to become a Web Developer in today''s world, Uisdean is the mentor for you!','https://i.pravatar.cc/150?img=13');
-INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (3, 'Ned', 'Nielson','','https://i.pravatar.cc/150?img=24');
-INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (3, 'Abra', 'Tellervo','','https://i.pravatar.cc/150?img=18');
-INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (3, 'Judith', 'Kerime','','https://i.pravatar.cc/150?img=19');
+INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (3, 'Ned', 'Nielson','Ned is a database and server wizard! If you already know a thing or two about back-end development, Ned would be a fantastic person to speak with.','https://i.pravatar.cc/150?img=24');
+INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (3, 'Abra', 'Tellervo','Abra is currently working with a small to medium start up company and has been there for 2 years. They can provide a great window into a back-end developer''s life at a startup.','https://i.pravatar.cc/150?img=18');
+INSERT INTO mentors (job_id, first_name, last_name, blurb, headshot) VALUES (3, 'Judith', 'Kerime','Judith is currently in school for a back-end developer degree and can speak to the learning curve required to become a back-end developer','https://i.pravatar.cc/150?img=19');
 
 --  ///////////////////////////////////////////
 --  /////////       days             //////////
@@ -113,6 +115,3 @@ INSERT INTO appointments (
   time_id) 
   
   VALUES (1,4,1,1)
-
-
-
