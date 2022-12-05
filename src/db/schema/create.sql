@@ -57,7 +57,7 @@ CREATE TABLE articles (
 
 CREATE TABLE questions (
   id SERIAL PRIMARY KEY NOT NULL,
-  question VARCHAR(255),
+  question VARCHAR(510),
   answer_one VARCHAR(255),
   answer_two VARCHAR(255)
 );
