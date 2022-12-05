@@ -115,6 +115,3 @@ INSERT INTO appointments (
   time_id) 
   
   VALUES (1,4,1,1)
-
-
-
